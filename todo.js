@@ -7,7 +7,7 @@ const key = "todoProject";
 let toDoEvents = [];
 
 const saveToDo = () => {
-  localStorage.setItem(key, JSON.stringify(toDoEvents)); //일단 저장
+  localStorage.setItem(key, JSON.stringify(toDoEvents));
 };
 
 function deleteTodo(event) {
@@ -79,7 +79,7 @@ const handleSubmit = (event) => {
 
 const getToDoEvents = () => {
   const StoredToDoEvents = localStorage.getItem(key);
-  if (StoredToDoEvents) return;
+  if (!StoredToDoEvents) return;
   const storedToDoContent = JSON.parse(StoredToDoEvents);
   storedToDoContent?.forEach((todo) => {
     showToDo(todo.text);
