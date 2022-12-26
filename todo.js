@@ -31,18 +31,13 @@ function updateToDo(event) {
   const newTodoContent = window.prompt("type update todo content");
   span.text = newTodoContent;
 
-  const newToDoEvents = toDoEvents?.forEach((todo) => {
+  toDoEvents?.forEach((todo) => {
     if (todo.id === parseInt(li.id)) {
       todo.text = newTodoContent;
-      console.log(todo);
     }
   });
-
-  //toDoEvents = newToDoEvents;
-
+  span.innerHTML = newTodoContent;
   saveToDo();
-  init();
-  //console.log(newTodoContent);
 }
 
 const showToDo = (text) => {
@@ -59,7 +54,6 @@ const showToDo = (text) => {
 
   updateBtn.innerText = "🖍️";
   updateBtn.addEventListener("click", updateToDo);
-  //deleteBtn.addEventListener("click", deleteTodo);
 
   span.innerHTML = text;
 
