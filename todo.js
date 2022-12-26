@@ -10,6 +10,12 @@ const saveTodo = () => {
   localStorage.setItem(key, JSON.stringify(toDoEvents)); //일단 저장
 };
 
+function deleteTodo(event) {
+  const btn = event.target;
+  const li = btn.parentNode; //밑에서 자식 노드 추가한거의 역순으로 접근
+  toDoList.removeChild(li);
+}
+
 const showToDo = (text) => {
   const li = document.createElement("li"); //리스트에
   const deleteBtn = document.createElement("button"); //버튼만들고
@@ -17,6 +23,8 @@ const showToDo = (text) => {
   const newid = toDoList.length + 1; //식별자
 
   deleteBtn.innerText = "❌";
+  deleteBtn.addEventListener("click", deleteTodo);
+  //this 바인딩 문제로 여기 콜백함수로는 화살표 함수를 사용하면 안된다고 한다.
 
   span.innerHTML = text;
 
