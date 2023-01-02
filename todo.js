@@ -2,37 +2,36 @@ const toDoForm = document.querySelector(".toDoListForm");
 const todoInput = toDoForm.querySelector("input");
 const toDoList = document.querySelector(".toDoListItem");
 
-const key = "todoProject";
+const LOCAL_STORAGE_KEY = "todoProject";
 
-let toDoEvents = [];
+let todoItem = [];
 
 const saveToDo = () => {
-  localStorage.setItem(key, JSON.stringify(toDoEvents));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoItem));
 };
 
 function deleteTodo(event) {
   const btn = event.target;
-  const li = btn.parentNode; //밑에서 자식 노드 추가한거의 역순으로 접근
+  const li = btn.parentNode;
   toDoList.removeChild(li);
 
-  const newToDoEvents = toDoEvents.filter((todo) => {
-    return todo.id !== parseInt(li.id);
+  const newtodoItem = todoItem.filter((todo) => {
+    return todo.id !== li.id;
   });
 
-  toDoEvents = newToDoEvents;
+  todoItem = newtodoItem;
 
   saveToDo();
 }
 
 function updateToDo(event) {
   const btn = event.target;
-  const span = btn.previousSibling;
   const li = btn.parentNode;
+  const span = document.getElementById(`todoContent${li.id}`);
   const newTodoContent = window.prompt("type update todo content");
-  span.text = newTodoContent;
 
-  toDoEvents?.forEach((todo) => {
-    if (todo.id === parseInt(li.id)) {
+  todoItem?.forEach((todo) => {
+    if (todo.id === li.id) {
       todo.text = newTodoContent;
     }
   });
@@ -40,54 +39,58 @@ function updateToDo(event) {
   saveToDo();
 }
 
-const showToDo = (text) => {
-  const li = document.createElement("li"); //리스트에
-  const deleteBtn = document.createElement("button"); //버튼만들고
+const createElement = (text, id) => {
+  const todoListItem = document.createElement("li");
+  const deleteBtn = document.createElement("button");
   const updateBtn = document.createElement("button");
-  const span = document.createElement("span"); //내용 보여주고
-  const newid = toDoEvents.length + 1; //식별자
+  const todoListContent = document.createElement("span");
+  todoListContent.setAttribute("id", `todoContent${id}`);
+
+  todoListItem.appendChild(todoListContent);
+  todoListItem.appendChild(updateBtn);
+  todoListItem.appendChild(deleteBtn);
 
   deleteBtn.innerText = "❌";
   deleteBtn.addEventListener("click", deleteTodo);
 
-  //this 바인딩 문제로 여기 콜백함수로는 화살표 함수를 사용하면 안된다고 한다.
-
   updateBtn.innerText = "🖍️";
   updateBtn.addEventListener("click", updateToDo);
 
-  span.innerHTML = text;
+  todoListContent.innerHTML = text;
 
-  li.appendChild(span); // 자식 노드 추가
-  li.appendChild(updateBtn);
-  li.appendChild(deleteBtn); // 자식 노드 추가
-  toDoList.appendChild(li); // 자식 노드 추가(내용물 안에)
-  li.id = newid; //삭제를 위한 식별자 추가
+  return todoListItem;
+};
 
+const addTodo = (text) => {
+  const newId = new Date() + todoItem.length;
+  const todoListItem = createElement(text, newId);
+  toDoList.appendChild(todoListItem);
+  todoListItem.id = newId;
   const toDoContent = {
     text,
-    id: newid,
+    id: newId,
   };
-  toDoEvents.push(toDoContent);
+  todoItem.push(toDoContent);
   saveToDo();
 };
 
 const handleSubmit = (event) => {
   event.preventDefault();
-  showToDo(todoInput.value);
+  addTodo(todoInput.value);
   todoInput.value = "";
 };
 
-const getToDoEvents = () => {
-  const StoredToDoEvents = localStorage.getItem(key);
-  if (!StoredToDoEvents) return;
-  const storedToDoContent = JSON.parse(StoredToDoEvents);
+const gettodoItem = () => {
+  const StoredtodoItem = localStorage.getItem(LOCAL_STORAGE_KEY);
+  if (!StoredtodoItem) return;
+  const storedToDoContent = JSON.parse(StoredtodoItem);
   storedToDoContent?.forEach((todo) => {
-    showToDo(todo.text);
+    addTodo(todo.text);
   });
 };
 
 const init = () => {
-  getToDoEvents();
+  gettodoItem();
   toDoForm.addEventListener("submit", handleSubmit);
 };
 
