@@ -1,7 +1,7 @@
 import { deleteTodo } from "./deleteTodo.js";
 import { updateToDo } from "./updateTodo.js";
 
-export const createElement = (text, id, toDoList) => {
+export const createElement = (text:string, id:string, toDoList:Element) => {
   const todoListItem = document.createElement("li");
   const deleteBtn = document.createElement("button");
   const updateBtn = document.createElement("button");
@@ -14,7 +14,6 @@ export const createElement = (text, id, toDoList) => {
 
   deleteBtn.innerText = "❌";
   deleteBtn.addEventListener("click", (e) => {
-    console.log(toDoList);
     deleteTodo(e, toDoList);
   });
 

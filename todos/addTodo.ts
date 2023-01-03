@@ -2,8 +2,8 @@ import { todoItem } from "../store/todoArray.js";
 import { createElement } from "./createTodo.js";
 import { saveToDo } from "../store/data/saveTodo.js";
 
-export const addTodo = (text, toDoList) => {
-  const newId = new Date() + todoItem.length;
+export const addTodo = (text:string, toDoList:Element) => {
+  const newId = new Date() + String(todoItem?.length);
   const todoListItem = createElement(text, newId, toDoList);
   toDoList.appendChild(todoListItem);
   todoListItem.id = newId;
@@ -11,6 +11,6 @@ export const addTodo = (text, toDoList) => {
     text,
     id: newId,
   };
-  todoItem.push(toDoContent);
+  todoItem?.push(toDoContent);
   saveToDo();
 };
