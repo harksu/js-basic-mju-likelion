@@ -11,7 +11,6 @@ export const createElement = (text, id, toDoList) => {
     todoListItem.appendChild(deleteBtn);
     deleteBtn.innerText = "❌";
     deleteBtn.addEventListener("click", (e) => {
-        console.log(toDoList);
         deleteTodo(e, toDoList);
     });
     updateBtn.innerText = "🖍️";
