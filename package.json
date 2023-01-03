@@ -1,0 +1,22 @@
+{
+  "name": "likelion-11th-1week",
+  "version": "1.0.0",
+  "description": "type-script-study-likelion",
+  "main": "todo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harksu/js-basic-mju-likelion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harksu/js-basic-mju-likelion/issues"
+  },
+  "homepage": "https://github.com/harksu/js-basic-mju-likelion#readme",
+  "dependencies": {
+    "typescript": "^4.9.4"
+  }
+}
