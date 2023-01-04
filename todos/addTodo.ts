@@ -1,6 +1,6 @@
-import { todoItem } from "../store/todoArray.js";
-import { createElement } from "./createTodo.js";
-import { saveToDo } from "../store/data/saveTodo.js";
+import { todoItem } from "../store/todoArray";
+import { createElement } from "./createTodo";
+import { saveToDo } from "../store/data/saveTodo";
 
 export const addTodo = (text:string, toDoList:Element) => {
   const newId = new Date() + String(todoItem?.length);

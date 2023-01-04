@@ -1,6 +1,6 @@
-import { saveToDo } from "../store/data/saveTodo.js";
-import { todoItem } from "../store/todoArray.js";
-import { setTodoItem } from "../store/todoArray.js";
+import { saveToDo } from "../store/data/saveTodo";
+import { todoItem } from "../store/todoArray";
+import { setTodoItem } from "../store/todoArray";
 
 export function deleteTodo(event:any, toDoList:Element) {
   const btn = event.target;

@@ -1,5 +1,5 @@
-import { gettodoItem } from "./store/data/getTodo.js";
-import { addTodo } from "./todos/addTodo.js";
+import { gettodoItem } from "./store/data/getTodo";
+import { addTodo } from "./todos/addTodo";
 
 const toDoForm  = document.querySelector(".toDoListForm") as Element;
 const todoInput = toDoForm.querySelector("input") as HTMLInputElement;

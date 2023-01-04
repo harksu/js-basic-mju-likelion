@@ -1,5 +1,5 @@
-import { deleteTodo } from "./deleteTodo.js";
-import { updateToDo } from "./updateTodo.js";
+import { deleteTodo } from "./deleteTodo";
+import { updateToDo } from "./updateTodo";
 
 export const createElement = (text:string, id:string, toDoList:Element) => {
   const todoListItem = document.createElement("li");

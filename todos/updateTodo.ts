@@ -1,5 +1,5 @@
-import { saveToDo } from "../store/data/saveTodo.js";
-import { todoItem } from "../store/todoArray.js";
+import { saveToDo } from "../store/data/saveTodo";
+import { todoItem } from "../store/todoArray";
 
 export function updateToDo(event:any) {
   const btn = event.target;

@@ -1,6 +1,6 @@
-import { LOCAL_STORAGE_KEY } from "../key.js";
-import { addTodo } from "../../todos/addTodo.js";
-import { todo } from "../../type.js";
+import { LOCAL_STORAGE_KEY } from "../key";
+import { addTodo } from "../../todos/addTodo";
+import { todo } from "../../type";
 
 export const gettodoItem = (toDoList:Element) => {
   const StoredtodoItem = localStorage.getItem(LOCAL_STORAGE_KEY);

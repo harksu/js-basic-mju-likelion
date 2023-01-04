@@ -1,5 +1,5 @@
-import { LOCAL_STORAGE_KEY } from "../key.js";
-import { todoItem } from "../todoArray.js";
+import { LOCAL_STORAGE_KEY } from "../key";
+import { todoItem } from "../todoArray";
 
 export const saveToDo = () => {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoItem));
